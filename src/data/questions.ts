@@ -1563,7 +1563,7 @@ Il determinante è dimezzato → cambia. **Risposta: a. Falso.** ✓`,
     text: 'Siano $v_1, \\ldots, v_5 \\in \\mathbb{R}^5$ e $w_1, \\ldots, w_5 \\in \\mathbb{R}^4$. Quali delle seguenti affermazioni sono vere?',
     options: [
       'a. Se i vettori $w_1, \\ldots, w_5$ sono generatori di $\\mathbb{R}^4$, allora esiste sempre $f: \\mathbb{R}^5 \\to \\mathbb{R}^4$ lineare tale che $f(v_i) = w_i$.',
-      'b. Se i vettori $v_1, \\ldots, v_5$ formano una base di $\\mathbb{R}^5$, allora esiste sempre $f: \\mathbb{R}^5 \\to \\mathbb{R}^4$ lineare tale che $f(v_i) = w_i$.',
+      'b. Se i vettori $v_1, \\ldots, v_5$ formano una base di $\\mathbb{R}^5$, allora existe sempre $f: \\mathbb{R}^5 \\to \\mathbb{R}^4$ lineare tale che $f(v_i) = w_i$.',
       'c. Esiste sempre una applicazione lineare $f: \\mathbb{R}^5 \\to \\mathbb{R}^4$ tale che $f(v_i) = w_i$.',
     ],
     correctIndices: [1],
@@ -2048,7 +2048,7 @@ Se $\\{v_1, \\ldots, v_n\\}$ è ortogonale ma i vettori non sono unitari, $f(v_i
 
 **Opzione c:** Solo le matrici simmetriche sono ortogonalmente diagonalizzabili (Teorema Spettrale). Una matrice diagonalizzabile non simmetrica non lo è. **Falsa** ✗
 
-**Opzione d:** Una matrice diagonalizzabile può avere autovalori coincidenti, purché la molteplicità geometrica uguagli quella algebrica.
+**Opzione d:** Una matrice diagonalizzabile può avere autovalori coincidenti, purché la molteplicità geometrica uguaglia quella algebrica.
 Es: $A = I$ ha autovalore 1 con molteplicità 3 ed è diagonalizzabile. **Sempre vera** ✓
 
 **Risposta: d.** ✓`,
@@ -2782,7 +2782,7 @@ $$\\operatorname{null}(f_A) = 5 - 3 = 2$$
       'c. $e_2 \\cdot (e_3 \\times e_1)$',
       'd. $(e_3 \\times e_2) \\cdot e_1$',
     ],
-    correctIndices: [1],
+    correctIndices: [2],
     explanation: `Calcoliamo $e_3 \\cdot (e_1 \\times e_2)$ usando il **prodotto misto**:
 $$a \\cdot (b \\times c) = \\det(a, b, c)$$
 
@@ -2806,5 +2806,350 @@ $e_1 \\times e_2 = e_3$, quindi $e_3 \\cdot e_3 = 1$.
 
 **Risposta: c.** $e_2 \\cdot (e_3 \\times e_1) = 1$. ✓`,
   },
-];
 
+  // ── NUOVE DOMANDE ESTRAPOLATE DAI FOGLI DI BRUTTA E DAL PDF ──
+
+  {
+    id: 107,
+    category: 'Sistemi Lineari',
+    type: 'single',
+    text: 'Si consideri il sistema lineare parametricamente espresso da $\\begin{pmatrix}k & 0 & -1 \\\\ 1 & 0 & -1\\end{pmatrix} \\begin{pmatrix}x \\\\ y \\\\ z\\end{pmatrix} = \\begin{pmatrix}0 \\\\ 0\\end{pmatrix}$. Quale delle seguenti affermazioni è vera?',
+    options: [
+      'a. Non esistono soluzioni per ogni $k \\in \\mathbb{R}$.',
+      'b. Ha soluzioni per ogni $k \\in \\mathbb{R}$.',
+      'c. Ha soluzione unica solo per $k = 1$.',
+      'd. Ammette una sola soluzione per $k \\neq 1$.',
+    ],
+    correctIndices: [1],
+    explanation: `Trattandosi di un sistema omogeneo $A\\mathbf{x} = \\mathbf{0}$, la soluzione banale $(0,0,0)^T$ esiste sempre per qualsiasi valore di $k \\in \\mathbb{R}$.
+
+Inoltre, il sistema è espresso da 2 equazioni in 3 incognite ($x, y, z$). Poiché il rango della matrice dei coefficienti $A$ è al massimo 2, per il teorema di Rouché-Capelli la dimensione dello spazio delle soluzioni è $3 - \\operatorname{rk}(A) \\ge 1$. 
+
+Di conseguenza, il sistema ha sempre infinite soluzioni per ogni $k$.
+
+**Risposta: b. Ho soluzioni per ogni k.**`,
+  },
+
+  {
+    id: 108,
+    category: 'Autovalori e Autovettori',
+    type: 'single',
+    text: 'Trovare gli autovalori della matrice $A = \\begin{pmatrix}1 & 0 & 0 \\\\ -2 & -2 & 0 \\\\ 3 & 0 & 3\\end{pmatrix}$.',
+    options: [
+      'a. $\\lambda_1 = 1, \\lambda_2 = -2, \\lambda_3 = 3$',
+      'b. $\\lambda_1 = 1, \\lambda_2 = 2, \\lambda_3 = -3$',
+      'c. $\\lambda_1 = -1, \\lambda_2 = -2, \\lambda_3 = 3$',
+      'd. $\\lambda_1 = 0, \\lambda_2 = -2, \\lambda_3 = 3$',
+    ],
+    correctIndices: [0],
+    explanation: `La matrice $A$ è una **matrice triangolare inferiore**:
+$$A = \\begin{pmatrix}1 & 0 & 0 \\\\ -2 & -2 & 0 \\\\ 3 & 0 & 3\\end{pmatrix}$$
+
+Per qualsiasi matrice triangolare (superiore o inferiore), gli autovalori coincidono esattamente con gli elementi situati sulla diagonale principale.
+
+Verifica tramite polinomio caratteristico:
+$$\\det(A - \\lambda I) = (1 - \\lambda)(-2 - \\lambda)(3 - \\lambda) = 0$$
+
+Le radici sono immediatamente $\\lambda = 1, -2, 3$.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 109,
+    category: 'Complemento Ortogonale',
+    type: 'single',
+    text: 'Sia $U$ il sottospazio di $\\mathbb{R}^3$ generato da $u = (1,0,3)$ e $v = (1,2,0)$. Allora $U^\\perp$ è generato da:',
+    options: [
+      'a. $(-6, 3, 2)$',
+      'b. $(1, 2, 3)$',
+      'c. $(6, -3, 2)$',
+      'd. $(3, 0, 1)$',
+    ],
+    correctIndices: [0],
+    explanation: `Il complemento ortogonale $U^\\perp$ è l'insieme dei vettori $w = (x, y, z) \\in \\mathbb{R}^3$ tali che $w \\cdot u = 0$ e $w \\cdot v = 0$:
+$$\\begin{cases} x + 3z = 0 \\\\ x + 2y = 0 \\end{cases}$$
+
+Esprimiamo $x$ e $y$ in funzione di $z$:
+$$x = -3z, \\quad y = -\\frac{x}{2} = \\frac{3}{2}z$$
+
+Ponendo $z = 2$, otteniamo $x = -6$, $y = 3$, $z = 2$, ossia il vettore $(-6, 3, 2)$.
+
+In alternativa, possiamo calcolare il prodotto vettoriale $u \\times v$:
+$$u \\times v = \\begin{vmatrix} e_1 & e_2 & e_3 \\\\ 1 & 0 & 3 \\\\ 1 & 2 & 0 \\end{vmatrix} = (-6, 3, 2)$$
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 110,
+    category: 'Diagonalizzabilità',
+    type: 'single',
+    text: 'Sia $f$ un endomorfismo di uno spazio vettoriale $V$. Quale delle seguenti condizioni è necessaria e sufficiente affinché $f$ sia diagonalizzabile?',
+    options: [
+      'a. Esiste una matrice invertibile $P$ per cui $P^T A P$ è diagonale.',
+      'b. Esiste una matrice invertibile $P$ per cui $P^{-1} A P$ è diagonale.',
+      'c. Esistono distinte matrici $P$ e $Q$ per cui $P A Q^{-1}$ è diagonale.',
+      'd. Esiste una matrice $P$ per cui $P A$ è diagonale.',
+    ],
+    correctIndices: [1],
+    explanation: `Un endomorfismo $f$ con matrice associata $A$ è diagonalizzabile se e solo se $A$ è simile a una matrice diagonale $D$. Per definizione di similarità tra matrici, ciò equivale all'esistenza di una matrice di cambio di base invertibile $P$ tale che:
+$$D = P^{-1} A P$$
+
+**Risposta: b.**`,
+  },
+
+  {
+    id: 111,
+    category: 'Indipendenza Lineare',
+    type: 'single',
+    text: 'Sia $V$ uno spazio vettoriale di dimensione $n$ e siano $v_1, v_2, \\dots, v_k \\in V$. Quale delle seguenti affermazioni è corretta?',
+    options: [
+      'a. Se $v_1, v_2, \\dots, v_k$ sono linearmente indipendenti, allora è necessario che $k \\le n$.',
+      'b. Se $v_1, v_2, \\dots, v_k$ sono linearmente indipendenti, allora $k = n$.',
+      'c. Se $v_1, v_2, \\dots, v_k$ sono linearmente dipendenti, allora sono anche un insieme di generatori di $V$.',
+      'd. Se $k > n$, allora $v_1, v_2, \\dots, v_k$ possono essere linearmente indipendenti.',
+    ],
+    correctIndices: [0],
+    explanation: `In uno spazio vettoriale di dimensione $n$, il numero massimo di vettori linearmente indipendenti è $n$. Di conseguenza, se un insieme di $k$ vettori è linearmente indipendente, deve necessariamente valere $k \\le n$.
+
+- L'opzione b è errata perché si possono avere $k < n$ vettori indipendenti.
+- L'opzione c è errata perché la dipendenza lineare non implica il fatto di generare lo spazio.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 112,
+    category: 'Matrici Simili',
+    type: 'single',
+    text: 'Sia $f$ un endomorfismo di uno spazio vettoriale reale $V$ e $A = M_B^B(f)$ la matrice associata ad $f$ rispetto a una base $B$ di $V$. Sia $S$ l\'insieme delle matrici associate ad $f$ al variare delle basi distinte di $V$. Quale affermazione è corretta?',
+    options: [
+      'a. $S$ è l\'insieme delle matrici del tipo $P^T A P$ con $P$ matrice ortogonale.',
+      'b. $S$ è l\'insieme delle matrici del tipo $P A P^{-1}$ con $P$ matrice invertibile.',
+      'c. $S$ contiene solo la matrice $A$.',
+      'd. $S$ contiene solo matrici diagonali.',
+    ],
+    correctIndices: [1],
+    explanation: `Al variare della base nello spazio vettoriale $V$, le matrici che rappresentano lo stesso endomorfismo $f$ sono tutte e sole le matrici simili ad $A$. L'insieme $S$ è quindi formato da tutte le matrici della forma $P^{-1} A P$ (o equivalentemente $M A M^{-1}$ ponendo $M = P^{-1}$) con $P$ matrice invertibile di cambio di base.
+
+**Risposta: b.**`,
+  },
+
+  {
+    id: 113,
+    category: 'Applicazioni Lineari',
+    type: 'single',
+    text: 'Sia $f: V \\to W$ un\'applicazione lineare con $\\dim(V) = 5$ e $\\dim(W) = 2$. Quale delle seguenti affermazioni è corretta?',
+    options: [
+      'a. $f$ non può essere suriettiva.',
+      'b. $f$ non può essere iniettiva.',
+      'c. $f$ è sicuramente un isomorfismo.',
+      'd. $\\operatorname{Ker}(f)$ ha dimensione al massimo 2.',
+    ],
+    correctIndices: [1],
+    explanation: `Per il Teorema Rango-Nullità:
+$$\\dim(\\operatorname{Ker}(f)) + \\operatorname{rk}(f) = \\dim(V) = 5$$
+
+Poiché $\\operatorname{Im}(f) \\subseteq W$, il rango soddisfa $\\operatorname{rk}(f) \\le \\dim(W) = 2$.
+Di conseguenza:
+$$\\dim(\\operatorname{Ker}(f)) = 5 - \\operatorname{rk}(f) \\ge 5 - 2 = 3$$
+
+Poiché $\\dim(\\operatorname{Ker}(f)) \\ge 3 > 0$, il nucleo non è banale e quindi $f$ **non può essere iniettiva**.
+
+**Risposta: b.**`,
+  },
+
+  {
+    id: 114,
+    category: 'Base e Immagine',
+    type: 'single',
+    text: 'Sia $f: \\mathbb{R}^3 \\to \\mathbb{R}^2$ la funzione lineare definita come $f(x,y,z) = (y - 4z, x + y)$. Quale dei seguenti insiemi di vettori forma una base dell\'immagine di $f$?',
+    options: [
+      'a. $\\{(1,0), (0,1)\\}$',
+      'b. $\\{(1,1,0)\\}$',
+      'c. $\\{(4,1,0), (0,0,1)\\}$',
+      'd. $\\{(0,0)\\}$',
+    ],
+    correctIndices: [0],
+    explanation: `Calcoliamo le immagini dei vettori della base canonica di $\\mathbb{R}^3$:
+- $f(1,0,0) = (0, 1)$
+- $f(0,1,0) = (1, 1)$
+- $f(0,0,1) = (-4, 0)$
+
+I vettori $(0,1)$ e $(1,1)$ sono due vettori di $\\mathbb{R}^2$ chiaramente linearmente indipendenti. Poiché $\\dim(\\mathbb{R}^2) = 2$, l'immagine ha dimensione 2 (ovvero $f$ è suriettiva).
+
+Una qualsiasi base di $\\mathbb{R}^2$, come la base canonica $\\{(1,0), (0,1)\\}$, forma una base dell'immagine di $f$.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 115,
+    category: 'Determinante',
+    type: 'single',
+    text: 'Quale delle seguenti matrici ha determinante pari a $-1$?',
+    options: [
+      'a. $\\begin{pmatrix}-1 & 1 & 0 \\\\ 1 & 0 & 0 \\\\ 1 & -1 & -1\\end{pmatrix}$',
+      'b. $\\begin{pmatrix}1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 1 & 0 & 0\\end{pmatrix}$',
+      'c. $\\begin{pmatrix}1/3 & 0 & 0 \\\\ -2 & 1/3 & 0 \\\\ 1 & 2 & 1/3\\end{pmatrix}$',
+      'd. $\\begin{pmatrix}0 & 1 \\\\ 1 & 0\\end{pmatrix}$',
+    ],
+    correctIndices: [3],
+    explanation: `Calcoliamo il determinante per le matrici proposte:
+- Per la matrice $2 \\times 2$ dell'opzione d: $\\det \\begin{pmatrix}0 & 1 \\\\ 1 & 0\\end{pmatrix} = (0 \\cdot 0) - (1 \\cdot 1) = -1$.
+- Per l'opzione a: sviluppando sulla prima riga:
+  $$-1(0) - 1(-1 - 0) = 1 \\neq -1$$
+- Per l'opzione c (triangolare inferiore): $(1/3)^3 = 1/27 \\neq -1$.
+
+**Risposta: d.**`,
+  },
+
+  {
+    id: 116,
+    category: 'Rango - Matrice',
+    type: 'single',
+    text: 'Qual è il rango della matrice $A = \\begin{pmatrix}3 & 1 \\\\ 2 & 2 \\\\ 1 & 0\\end{pmatrix}$?',
+    options: [
+      'a. 1',
+      'b. 2',
+      'c. 3',
+      'd. 0',
+    ],
+    correctIndices: [1],
+    explanation: `La matrice $A$ ha dimensione $3 \\times 2$, quindi il suo rango massimo possibile è $\\min(3,2) = 2$.
+
+Estraggano un minore di ordine 2, ad esempio considerando le ultime due righe:
+$$\\begin{vmatrix} 2 & 2 \\\\ 1 & 0 \\end{vmatrix} = (2 \\cdot 0) - (2 \\cdot 1) = -2 \\neq 0$$
+
+Poiché esiste un minore $2 \\times 2$ con determinante non nullo, il rango della matrice $A$ è 2.
+
+**Risposta: b.**`,
+  },
+
+  {
+    id: 117,
+    category: 'Matrici Simili',
+    type: 'single',
+    text: 'Data la matrice $A = \\begin{pmatrix}1 & -2 \\\\ -2 & 1\\end{pmatrix}$, quale tra le seguenti matrici è simile ad $A$?',
+    options: [
+      'a. $\\begin{pmatrix}3 & 0 \\\\ 0 & -1\\end{pmatrix}$',
+      'b. $\\begin{pmatrix}1 & 0 \\\\ 0 & -3\\end{pmatrix}$',
+      'c. $\\begin{pmatrix}1 & 0 \\\\ 0 & 3\\end{pmatrix}$',
+      'd. $\\begin{pmatrix}-1 & 0 \\\\ 0 & -2\\end{pmatrix}$',
+    ],
+    correctIndices: [0],
+    explanation: `Calcoliamo gli autovalori di $A$:
+$$\\det(A - \\lambda I) = \\begin{vmatrix} 1 - \\lambda & -2 \\\\ -2 & 1 - \\lambda \\end{vmatrix} = (1 - \\lambda)^2 - 4 = 0$$
+$$(1 - \\lambda)^2 = 4 \\implies 1 - \\lambda = \\pm 2$$
+- $\\lambda_1 = 1 - 2 = -1$
+- $\\lambda_2 = 1 + 2 = 3$
+
+Poiché $A$ è una matrice simmetrica reale con autovalori $3$ e $-1$, essa è simile alla matrice diagonale contenente i suoi autovalori, ovvero $\\begin{pmatrix}3 & 0 \\\\ 0 & -1\\end{pmatrix}$.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 118,
+    category: 'Sistemi Generatori',
+    type: 'single',
+    text: 'Sia $S = \\{v_1, \\dots, v_n\\}$ un insieme di vettori di uno spazio vettoriale $V$ su un campo $K$. Dire che $S$ è linearmente indipendente è equivalente a dire che:',
+    options: [
+      'a. L\'unica combinazione lineare dei vettori di $S$ che dà il vettore nullo è quella con tutti i coefficienti nulli.',
+      'b. Almeno uno dei vettori di $S$ si può esprimere come combinazione lineare degli altri.',
+      'c. $S$ genera tutto lo spazio $V$.',
+      'd. La dimensione di $V$ è strettamente minore di $n$.',
+    ],
+    correctIndices: [0],
+    explanation: `Per definizione di indipendenza lineare, l'insieme di vettori $\\{v_1, \\dots, v_n\\}$ è linearmente indipendente se e solo se la relazione:
+$$c_1 v_1 + c_2 v_2 + \\dots + c_n v_n = 0_V$$
+implica necessariamente $c_1 = c_2 = \\dots = c_n = 0$.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 119,
+    category: 'Base e Immagine',
+    type: 'single',
+    text: 'Quale delle seguenti funzioni lineari $f: \\mathbb{R}^2 \\to \\mathbb{R}^2$ ha l\'immagine generata dal vettore $(1,2)$?',
+    options: [
+      'a. $f(x,y) = (x - y,\\; 2x - 2y)$',
+      'b. $f(x,y) = (x + 2y,\\; x - y)$',
+      'c. $f(x,y) = (-x,\\; -2x + y)$',
+      'd. $f(x,y) = (2x, y)$',
+    ],
+    correctIndices: [0],
+    explanation: `Affinché $\\operatorname{Im}(f)$ sia generata da $(1,2)$, ogni immagine $f(x,y)$ deve essere un multiplo scalare di $(1,2)$, cioè della forma $(c, 2c)$.
+
+Analizziamo l'opzione a: $f(x,y) = (x - y, 2x - 2y)$.
+Ponendo $c = x - y$, l'uscita è $(c, 2c) = c(1,2)$.
+Quindi l'immagine è esattamente $\\operatorname{Span}((1,2))$.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 120,
+    category: 'Isometrie',
+    type: 'single',
+    text: 'Sia $f$ un endomorfismo di $\\mathbb{R}^n$ che è un\'isometria. Quale delle seguenti affermazioni è sempre VERA?',
+    options: [
+      'a. La matrice associata ad $f$ rispetto alla base canonica di $\\mathbb{R}^n$ è ortogonale.',
+      'b. Tutti gli autovalori di $f$ sono numeri reali positivi.',
+      'c. La matrice associata ad $f$ rispetto alla base canonica di $\\mathbb{R}^n$ è simmetrica.',
+      'd. $f$ non è invertibile.',
+    ],
+    correctIndices: [0],
+    explanation: `Un'isometria lineare $f: \\mathbb{R}^n \\to \\mathbb{R}^n$ preserva il prodotto scalare e le norme euclidee. La matrice associata ad $f$ rispetto a una qualsiasi base ortonormale (come la base canonica) è una **matrice ortogonale** $A$ (ovvero $A^T A = I$).
+
+- L'opzione b è falsa poiché gli autovalori reali di un'isometria possono essere anche $-1$.
+- L'opzione c è falsa poiché un'isometria (es. una rotazione) non è necessariamente simmetrica.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 121,
+    category: 'Geometria Affine',
+    type: 'single',
+    text: 'Siano $r$ ed $s$ due rette nello spazio affine $\\mathbb{A}^3$. Affinché $r$ ed $s$ siano sghembe, qual è una condizione sufficiente?',
+    options: [
+      'a. Non sono parallele e non si intersecano in alcun punto.',
+      'b. Sono contenute nello stesso piano $-2x + 2z = 3$.',
+      'c. Hanno la stessa direzione.',
+      'd. Si intersecano in un solo punto.',
+    ],
+    correctIndices: [0],
+    explanation: `Per definizione, due rette nello spazio affine tre-dimensionale $\\mathbb{A}^3$ si dicono **sghembe** se non sono complanari, il che equivale a dire che **non sono parallele** e **non hanno punti di intersezione**.
+
+**Risposta: a.**`,
+  },
+
+  {
+    id: 122,
+    category: 'Matrici e Cambio di Base',
+    type: 'single',
+    text: 'Sia $f: \\mathbb{R}^3 \\to \\mathbb{R}^3$ la funzione lineare la cui matrice rispetto alle basi canoniche è $A = \\begin{pmatrix}2 & 1 & 3 \\\\ 0 & 0 & 0 \\\\ 1 & -1 & 1\\end{pmatrix}$. In questo caso è possibile trovare una base $V = \\{v_1, v_2, v_3\\}$ del dominio tale che la matrice di $f$ rispetto a $V$ nel dominio e alla base canonica nel codominio sia $\\begin{pmatrix}1 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0\\end{pmatrix}$?',
+    options: [
+      'a. Falso, perché il rango di $A$ è 2 mentre la matrice obiettivo ha rango 1.',
+      'b. Vero, è sempre possibile ridurre qualsiasi matrice a quella forma.',
+      'c. Vero, purché la base canonica sia ortonormale.',
+      'd. Falso, solo se la matrice fosse di ordine $2 \\times 2$.',
+    ],
+    correctIndices: [0],
+    explanation: `Un cambio di base nel dominio corrisponde a moltiplicare la matrice $A$ a destra per una matrice invertibile $P$: $A' = A P$.
+La moltiplicazione per una matrice invertibile **conserva il rango**.
+
+Calcoliamo il rango di $A$:
+$$\\begin{vmatrix} 2 & 3 \\\\ 1 & 1 \\end{vmatrix} = 2 - 3 = -1 \\neq 0 \\implies \\operatorname{rk}(A) = 2$$
+
+La matrice espressa nella richiesta $\\begin{pmatrix}1 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0\\end{pmatrix}$ ha invece rango **1**.
+
+Poiché un cambio di base non può modificare il rango dell'applicazione lineare, non è possibile ottenere tale matrice.
+
+**Risposta: a. Falso.**`,
+  },
+
+];
