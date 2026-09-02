@@ -135,49 +135,31 @@ const App: React.FC = () => {
         justifyContent: 'space-between',
         gap: '12px',
       }}>
-        {/* Logo with Originali badge */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-        }}>
-          <button
-            onClick={() => setView(AppView.HOME)}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              padding: 0,
-              flexShrink: 0,
-            }}
-          >
-            <span style={{ fontSize: '1.35rem' }}>∑</span>
-            <span style={{
-              fontWeight: 800,
-              fontSize: '1.05rem',
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em',
-              whiteSpace: 'nowrap',
-            }}>
-              Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
-            </span>
-          </button>
+        {/* Logo */}
+        <button
+          onClick={() => setView(AppView.HOME)}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            padding: 0,
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: '1.35rem' }}>∑</span>
           <span style={{
-            background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
-            color: '#fff',
-            padding: '3px 10px',
-            borderRadius: '12px',
-            fontSize: '0.7rem',
             fontWeight: 800,
-            letterSpacing: '0.05em',
+            fontSize: '1.05rem',
+            color: 'var(--text-primary)',
+            letterSpacing: '-0.02em',
             whiteSpace: 'nowrap',
           }}>
-            ORIGINALI
+            Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
           </span>
-        </div>
+        </button>
 
         {/* Nav links */}
         <div style={{
@@ -215,52 +197,6 @@ const App: React.FC = () => {
               {label}
             </button>
           ))}
-          
-          {/* Divider */}
-          <div style={{
-            width: '1px',
-            height: '24px',
-            background: 'var(--border)',
-            margin: '0 6px',
-            flexShrink: 0,
-          }} />
-
-          {/* Extra Version Button */}
-          <a
-            href="https://algebra-quiz-26.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              textDecoration: 'none',
-            }}
-          >
-            <button
-              style={{
-                background: 'var(--bg)',
-                border: '1.5px solid var(--border)',
-                borderRadius: 'var(--radius-sm)',
-                color: 'var(--text-secondary)',
-                fontWeight: 600,
-                fontSize: '0.75rem',
-                padding: '5px 10px',
-                cursor: 'pointer',
-                fontFamily: 'var(--font)',
-                transition: 'all 0.15s',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'var(--accent)';
-                e.currentTarget.style.color = 'var(--accent)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'var(--border)';
-                e.currentTarget.style.color = 'var(--text-secondary)';
-              }}
-            >
-              ✨ + Extra
-            </button>
-          </a>
         </div>
       </div>
     </nav>
@@ -299,6 +235,62 @@ const App: React.FC = () => {
           Algebra Lineare<br />
           <span style={{ color: 'var(--accent)' }}>& Geometria</span>
         </h1>
+        
+        {/* ORIGINALI badge under title */}
+        <span style={{
+          display: 'inline-block',
+          background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
+          color: '#fff',
+          padding: '4px 12px',
+          borderRadius: '12px',
+          fontSize: '0.75rem',
+          fontWeight: 800,
+          letterSpacing: '0.05em',
+          marginBottom: '16px',
+        }}>
+          ORIGINALI
+        </span>
+        
+        {/* Extra Version Button under title */}
+        <div style={{
+          marginBottom: '20px',
+        }}>
+          <a
+            href="https://algebra-quiz-26.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <button
+              style={{
+                background: 'var(--bg)',
+                border: '1.5px solid var(--border)',
+                borderRadius: 'var(--radius-sm)',
+                color: 'var(--text-secondary)',
+                fontWeight: 600,
+                fontSize: '0.8rem',
+                padding: '6px 12px',
+                cursor: 'pointer',
+                fontFamily: 'var(--font)',
+                transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.color = 'var(--accent)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--border)';
+                e.currentTarget.style.color = 'var(--text-secondary)';
+              }}
+            >
+              ✨ + Extra
+            </button>
+          </a>
+        </div>
+        
         <p style={{
           color: 'var(--text-secondary)',
           fontSize: '1rem',
