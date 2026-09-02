@@ -143,21 +143,36 @@ const App: React.FC = () => {
             border: 'none',
             cursor: 'pointer',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            gap: '10px',
+            gap: '2px',
             padding: 0,
             flexShrink: 0,
           }}
         >
-          <span style={{ fontSize: '1.35rem' }}>∑</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '1.35rem' }}>∑</span>
+            <span style={{
+              fontWeight: 800,
+              fontSize: '1.05rem',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.02em',
+              whiteSpace: 'nowrap',
+            }}>
+              Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+            </span>
+          </div>
           <span style={{
+            display: 'inline-block',
+            background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
+            color: '#fff',
+            padding: '2px 8px',
+            borderRadius: '8px',
+            fontSize: '0.6rem',
             fontWeight: 800,
-            fontSize: '1.05rem',
-            color: 'var(--text-primary)',
-            letterSpacing: '-0.02em',
-            whiteSpace: 'nowrap',
+            letterSpacing: '0.05em',
           }}>
-            Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+            ORIGINALI
           </span>
         </button>
 
