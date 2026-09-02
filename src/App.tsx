@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { questionBank } from './data/questions';
-import { Question, AppView, QuizResult } from './types';
+import { Question, AppView, QuizResult, QuizMode } from './types';
 import { QuizCard } from './components/QuizCard';
 import { ProgressBar } from './components/ProgressBar';
 import { ResultsScreen } from './components/ResultsScreen';
 import { StatsScreen } from './components/StatsScreen';
 import { HackScreen } from './components/HackScreen';
 import { NomenclaturaScreen } from './components/NomenclaturaScreen';
-import { QUIZ_SIZE, STORAGE_KEY_SEEN } from './constants';
+import { QUIZ_SIZE_TRAINING, QUIZ_SIZE_EXAM, STORAGE_KEY_SEEN, STORAGE_KEY_QUIZ_MODE } from './constants';
 
 // ── Quiz selection logic ─────────────────────────────────────────────────────
 // Priority: unseen questions first, then seen. Shuffle within each group.
@@ -21,7 +21,7 @@ function selectQuestions(seen: Set<number>, size: number): Question[] {
   return pool.slice(0, Math.min(size, pool.length));
 }
 
-// ── App ──────────────────────────────────────────────────────────────────────
+// ── App ────────────────────────────────────────────────────────────────────
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>(AppView.HOME);
   const [activeQuestions, setActiveQuestions] = useState<Question[]>([]);
@@ -29,6 +29,7 @@ const App: React.FC = () => {
   const [results, setResults] = useState<QuizResult[]>([]);
   const [score, setScore] = useState(0);
   const [seenIds, setSeenIds] = useState<Set<number>>(new Set());
+  const [quizMode, setQuizMode] = useState<QuizMode>(QuizMode.EXAM);
 
   // Load seen IDs from localStorage
   useEffect(() => {
@@ -41,6 +42,19 @@ const App: React.FC = () => {
     } catch { /* ignore */ }
   }, []);
 
+  // Load quiz mode from localStorage
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_QUIZ_MODE);
+      if (raw) {
+        const mode = parseInt(raw, 10);
+        if (mode === QuizMode.TRAINING || mode === QuizMode.EXAM) {
+          setQuizMode(mode);
+        }
+      }
+    } catch { /* ignore */ }
+  }, []);
+
   // Persist seen IDs
   useEffect(() => {
     try {
@@ -48,15 +62,23 @@ const App: React.FC = () => {
     } catch { /* ignore */ }
   }, [seenIds]);
 
+  // Persist quiz mode
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY_QUIZ_MODE, quizMode.toString());
+    } catch { /* ignore */ }
+  }, [quizMode]);
+
   const startQuiz = useCallback(() => {
-    const questions = selectQuestions(seenIds, QUIZ_SIZE);
+    const size = quizMode === QuizMode.TRAINING ? QUIZ_SIZE_TRAINING : QUIZ_SIZE_EXAM;
+    const questions = selectQuestions(seenIds, size);
     setActiveQuestions(questions);
     setCurrentIndex(0);
     setResults([]);
     setScore(0);
     setView(AppView.QUIZ);
     window.scrollTo(0, 0);
-  }, [seenIds]);
+  }, [seenIds, quizMode]);
 
   const handleAnswer = useCallback((isCorrect: boolean) => {
     const q = activeQuestions[currentIndex];
@@ -93,7 +115,7 @@ const App: React.FC = () => {
   const quizInProgress = activeQuestions.length > 0 && results.length < activeQuestions.length;
   const backToQuiz = useCallback(() => setView(AppView.QUIZ), []);
 
-  // ── Navbar ────────────────────────────────────────────────────────────────
+  // ── Navbar ───────────────────────────────────────────────────────────────
   const NavBar = () => (
     <nav style={{
       background: 'var(--bg-card)',
@@ -179,10 +201,12 @@ const App: React.FC = () => {
     </nav>
   );
 
-  // ── Home screen ───────────────────────────────────────────────────────────
+  // ── Home screen ─────────────────────────────────────────────────────────
   const HomeScreen = () => {
     const seen = seenIds.size;
     const total = questionBank.length;
+    const modeLabel = quizMode === QuizMode.TRAINING ? 'Allenamento' : 'Simulazione Esame';
+    const modeIcon = quizMode === QuizMode.TRAINING ? '📚' : '🎯';
 
     return (
       <div className="fade-in" style={{
@@ -217,7 +241,7 @@ const App: React.FC = () => {
           lineHeight: '1.65',
         }}>
           {total} domande d'esame con soluzioni dettagliate.<br />
-          20 domande per sessione, mai le stesse due volte di fila.
+          Mai le stesse due volte di fila.
         </p>
 
         {/* Progress pill */}
@@ -238,6 +262,69 @@ const App: React.FC = () => {
             domande già viste
           </div>
         )}
+
+        {/* Quiz Mode Toggle */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '12px',
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--radius)',
+          padding: '8px 12px',
+          marginBottom: '28px',
+          fontSize: '0.9rem',
+        }}>
+          <span style={{ color: 'var(--text-secondary)' }}>Modalità:</span>
+          <div style={{
+            display: 'flex',
+            gap: '6px',
+            backgroundColor: 'var(--bg)',
+            borderRadius: 'var(--radius-sm)',
+            padding: '4px',
+          }}>
+            <button
+              onClick={() => setQuizMode(QuizMode.TRAINING)}
+              style={{
+                padding: '6px 14px',
+                background: quizMode === QuizMode.TRAINING 
+                  ? 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)'
+                  : 'transparent',
+                color: quizMode === QuizMode.TRAINING ? '#fff' : 'var(--text-secondary)',
+                border: 'none',
+                borderRadius: 'var(--radius-sm)',
+                fontWeight: quizMode === QuizMode.TRAINING ? 700 : 500,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                fontFamily: 'var(--font)',
+                transition: 'all 0.2s',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              📚 10 domande
+            </button>
+            <button
+              onClick={() => setQuizMode(QuizMode.EXAM)}
+              style={{
+                padding: '6px 14px',
+                background: quizMode === QuizMode.EXAM 
+                  ? 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)'
+                  : 'transparent',
+                color: quizMode === QuizMode.EXAM ? '#fff' : 'var(--text-secondary)',
+                border: 'none',
+                borderRadius: 'var(--radius-sm)',
+                fontWeight: quizMode === QuizMode.EXAM ? 700 : 500,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                fontFamily: 'var(--font)',
+                transition: 'all 0.2s',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              🎯 20 domande
+            </button>
+          </div>
+        </div>
 
         {/* Start button */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '280px', margin: '0 auto' }}>
@@ -359,7 +446,7 @@ const App: React.FC = () => {
     );
   };
 
-  // ── Render ─────────────────────────────────────────────────────────────────
+  // ── Render ───────────────────────────────────────────────────────────────
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <NavBar />
