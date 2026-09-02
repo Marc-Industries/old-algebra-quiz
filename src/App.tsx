@@ -150,30 +150,32 @@ const App: React.FC = () => {
             flexShrink: 0,
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '1.35rem' }}>∑</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ fontSize: '1.35rem' }}>∑</span>
+              <span style={{
+                fontWeight: 800,
+                fontSize: '1.05rem',
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em',
+                whiteSpace: 'nowrap',
+              }}>
+                Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+              </span>
+            </div>
             <span style={{
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
+              color: '#fff',
+              padding: '2px 8px',
+              borderRadius: '8px',
+              fontSize: '0.6rem',
               fontWeight: 800,
-              fontSize: '1.05rem',
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.02em',
-              whiteSpace: 'nowrap',
+              letterSpacing: '0.05em',
             }}>
-              Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+              ORIGINALI
             </span>
           </div>
-          <span style={{
-            display: 'inline-block',
-            background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
-            color: '#fff',
-            padding: '2px 8px',
-            borderRadius: '8px',
-            fontSize: '0.6rem',
-            fontWeight: 800,
-            letterSpacing: '0.05em',
-          }}>
-            ORIGINALI
-          </span>
         </button>
 
         {/* Nav links */}
@@ -250,21 +252,6 @@ const App: React.FC = () => {
           Algebra Lineare<br />
           <span style={{ color: 'var(--accent)' }}>& Geometria</span>
         </h1>
-        
-        {/* ORIGINALI badge under title */}
-        <span style={{
-          display: 'inline-block',
-          background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
-          color: '#fff',
-          padding: '4px 12px',
-          borderRadius: '12px',
-          fontSize: '0.75rem',
-          fontWeight: 800,
-          letterSpacing: '0.05em',
-          marginBottom: '16px',
-        }}>
-          ORIGINALI
-        </span>
         
         {/* Extra Version Button under title */}
         <div style={{
