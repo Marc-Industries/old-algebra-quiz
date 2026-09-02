@@ -21,13 +21,18 @@ export enum AppView {
   NOMENCLATURA = 'NOMENCLATURA',
 }
 
+export enum QuizMode {
+  TRAINING = 10,    // 10 domande - allenamento
+  EXAM = 20,        // 20 domande - simulazione esame
+}
+
 export interface QuizResult {
   questionId: number;
   correct: boolean;
   selectedIndices: number[];
 }
 
-// ── Sezione "Hack" ───────────────────────────────────────────────────────────
+// ── Sezione "Hack" ─────────────────────────────────────────────────────────
 // Un trucco/scorciatoia mentale per un argomento specifico. Il testo di
 // "content" supporta la stessa sintassi delle spiegazioni dei quiz:
 // **grassetto**, $LaTeX inline$, $$LaTeX display$$ e righe che iniziano con
