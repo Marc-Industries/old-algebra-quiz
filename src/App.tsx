@@ -126,7 +126,7 @@ const App: React.FC = () => {
       backdropFilter: 'blur(12px)',
     }}>
       <div style={{
-        maxWidth: '720px',
+        maxWidth: '100%',
         margin: '0 auto',
         padding: '0 20px',
         height: '58px',
@@ -135,31 +135,49 @@ const App: React.FC = () => {
         justifyContent: 'space-between',
         gap: '12px',
       }}>
-        {/* Logo */}
-        <button
-          onClick={() => setView(AppView.HOME)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            padding: 0,
-            flexShrink: 0,
-          }}
-        >
-          <span style={{ fontSize: '1.35rem' }}>∑</span>
+        {/* Logo with Originali badge */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+        }}>
+          <button
+            onClick={() => setView(AppView.HOME)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: 0,
+              flexShrink: 0,
+            }}
+          >
+            <span style={{ fontSize: '1.35rem' }}>∑</span>
+            <span style={{
+              fontWeight: 800,
+              fontSize: '1.05rem',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.02em',
+              whiteSpace: 'nowrap',
+            }}>
+              Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+            </span>
+          </button>
           <span style={{
+            background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
+            color: '#fff',
+            padding: '3px 10px',
+            borderRadius: '12px',
+            fontSize: '0.7rem',
             fontWeight: 800,
-            fontSize: '1.05rem',
-            color: 'var(--text-primary)',
-            letterSpacing: '-0.02em',
+            letterSpacing: '0.05em',
             whiteSpace: 'nowrap',
           }}>
-            Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+            ORIGINALI
           </span>
-        </button>
+        </div>
 
         {/* Nav links */}
         <div style={{
@@ -168,6 +186,7 @@ const App: React.FC = () => {
           overflowX: 'auto',
           scrollbarWidth: 'none',
           WebkitOverflowScrolling: 'touch',
+          alignItems: 'center',
         }}>
           {[
             { label: 'Home', v: AppView.HOME },
@@ -196,6 +215,52 @@ const App: React.FC = () => {
               {label}
             </button>
           ))}
+          
+          {/* Divider */}
+          <div style={{
+            width: '1px',
+            height: '24px',
+            background: 'var(--border)',
+            margin: '0 6px',
+            flexShrink: 0,
+          }} />
+
+          {/* Extra Version Button */}
+          <a
+            href="https://algebra-quiz-26.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <button
+              style={{
+                background: 'var(--bg)',
+                border: '1.5px solid var(--border)',
+                borderRadius: 'var(--radius-sm)',
+                color: 'var(--text-secondary)',
+                fontWeight: 600,
+                fontSize: '0.75rem',
+                padding: '5px 10px',
+                cursor: 'pointer',
+                fontFamily: 'var(--font)',
+                transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.color = 'var(--accent)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--border)';
+                e.currentTarget.style.color = 'var(--text-secondary)';
+              }}
+            >
+              ✨ + Extra
+            </button>
+          </a>
         </div>
       </div>
     </nav>
